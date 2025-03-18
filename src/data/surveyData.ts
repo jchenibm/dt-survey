@@ -314,7 +314,7 @@ export const questions: Question[] = [
     description: '贵公司是否利用数字化技术进行生产计划管理？',
     options: [
       { id: 'q21_a', label: 'A', description: '没有', score: 1 },
-      { id: 'q21_b', label: 'B', description: '仅使用简单的生产计划软件', score: 2 },
+      { id: 'q21_b', label: 'B', description: '仅使用一些简单的生产计划软件', score: 2 },
       { id: 'q21_c', label: 'C', description: '利用数字化技术进行生产计划编排', score: 3 },
       { id: 'q21_d', label: 'D', description: '构建了智能生产计划系统并与供应链集成', score: 4 },
       { id: 'q21_e', label: 'E', description: '实现基于实时数据的动态生产计划优化', score: 5 }
@@ -461,52 +461,52 @@ export const maturityLevels: MaturityLevel[] = [
 
 export const recommendations: Recommendation[] = [
   // 组织能力域建议
-  { categoryId: 'organization', levelId: 1, content: '建立数字化转型领导小组，明确转型目标和范围' },
-  { categoryId: 'organization', levelId: 2, content: '制定数字化转型战略规划，明确实施路径和时间表' },
-  { categoryId: 'organization', levelId: 3, content: '优化业务流程，实现关键环节的数字化' },
-  { categoryId: 'organization', levelId: 4, content: '建立数字化转型文化，鼓励创新和协作' },
-  { categoryId: 'organization', levelId: 5, content: '构建数字化转型生态系统，与合作伙伴共同创新' },
+  { categoryId: 'organization', levelId: 1, content: '建立数字化转型领导小组，明确转型目标和范围', implementationGuidance: '由企业高层领导牵头，联合各部门负责人，共同制定数字化转型目标和范围。' },
+  { categoryId: 'organization', levelId: 2, content: '制定数字化转型战略规划，明确实施路径和时间表', implementationGuidance: '根据企业自身特点和行业发展趋势，制定详细的数字化转型战略规划，并明确实施路径和时间表。' },
+  { categoryId: 'organization', levelId: 3, content: '优化业务流程，实现关键环节的数字化', implementationGuidance: '对企业现有业务流程进行梳理和优化，选择关键环节进行数字化改造，例如生产、销售、采购等。' },
+  { categoryId: 'organization', levelId: 4, content: '建立数字化转型文化，鼓励创新和协作', implementationGuidance: '通过培训、宣传等方式，提高员工的数字化意识和技能，鼓励员工积极参与数字化转型，并加强部门间的协作。' },
+  { categoryId: 'organization', levelId: 5, content: '构建数字化转型生态系统，与合作伙伴共同创新', implementationGuidance: '与供应商、客户、科研机构等建立合作关系，共同探索数字化转型的新模式和新应用。' },
 
   // 技术能力域建议
-  { categoryId: 'technology', levelId: 1, content: '评估现有IT基础设施，制定升级改造计划' },
-  { categoryId: 'technology', levelId: 2, content: '引入云计算、大数据等新兴技术' },
-  { categoryId: 'technology', levelId: 3, content: '构建数字化研发平台，提升研发效率' },
-  { categoryId: 'technology', levelId: 4, content: '加强信息安全管理，保障数据安全' },
-  { categoryId: 'technology', levelId: 5, content: '探索人工智能、物联网等前沿技术应用' },
+  { categoryId: 'technology', levelId: 1, content: '评估现有IT基础设施，制定升级改造计划', implementationGuidance: '对企业现有IT基础设施进行全面评估，找出瓶颈和不足，制定升级改造计划，例如升级服务器、网络设备、数据库等。' },
+  { categoryId: 'technology', levelId: 2, content: '引入云计算、大数据等新兴技术', implementationGuidance: '根据企业自身需求，引入云计算、大数据等新兴技术，例如使用云服务器、云数据库、大数据分析平台等。' },
+  { categoryId: 'technology', levelId: 3, content: '构建数字化研发平台，提升研发效率', implementationGuidance: '构建数字化研发平台，实现研发数据的集中管理和共享，提高研发效率和质量。' },
+  { categoryId: 'technology', levelId: 4, content: '加强信息安全管理，保障数据安全', implementationGuidance: '建立完善的信息安全管理体系，加强对数据的加密、备份、访问控制等措施，保障数据安全。' },
+  { categoryId: 'technology', levelId: 5, content: '探索人工智能、物联网等前沿技术应用', implementationGuidance: '积极探索人工智能、物联网等前沿技术在企业生产、管理、服务等方面的应用，例如使用智能机器人、智能传感器、智能客服等。' },
   
   // 数据能力域建议
-  { categoryId: 'data', levelId: 1, content: '建立基础数据采集规范，制定数据治理路线图' },
-  { categoryId: 'data', levelId: 2, content: '构建统一数据仓库，实施主数据管理' },
-  { categoryId: 'data', levelId: 3, content: '建立数据质量管理体系，实现关键业务指标可视化' },
-  { categoryId: 'data', levelId: 4, content: '构建数据中台，推动数据资产化运营' },
-  { categoryId: 'data', levelId: 5, content: '实现数据驱动业务创新，打造数据产品服务体系' },
+  { categoryId: 'data', levelId: 1, content: '建立基础数据采集规范，制定数据治理路线图', implementationGuidance: '明确数据采集的范围、标准、流程等，制定数据治理的长期规划和目标。' },
+  { categoryId: 'data', levelId: 2, content: '构建统一数据仓库，实施主数据管理', implementationGuidance: '将企业内部各系统的数据整合到统一的数据仓库中，建立统一的主数据管理体系，保证数据的一致性和准确性。' },
+  { categoryId: 'data', levelId: 3, content: '建立数据质量管理体系，实现关键业务指标可视化', implementationGuidance: '建立数据质量监控、评估、改进机制，利用BI工具将关键业务指标以可视化方式呈现，方便管理层进行决策。' },
+  { categoryId: 'data', levelId: 4, content: '构建数据中台，推动数据资产化运营', implementationGuidance: '建设数据中台，将数据能力服务化，支持业务部门快速创新和应用，实现数据资产的价值最大化。' },
+  { categoryId: 'data', levelId: 5, content: '实现数据驱动业务创新，打造数据产品服务体系', implementationGuidance: '基于数据分析洞察，创新业务模式，开发数据产品，为客户提供增值服务，例如个性化推荐、预测性维护等。' },
 
   // 资源能力域建议
-  { categoryId: 'resource', levelId: 1, content: '制定基础设施升级计划，优化IT资源分配' },
-  { categoryId: 'resource', levelId: 2, content: '建立云资源管理体系，实施资源使用监控' },
-  { categoryId: 'resource', levelId: 3, content: '构建资源共享平台，提高资源利用效率' },
-  { categoryId: 'resource', levelId: 4, content: '建立知识管理系统，实现知识资产沉淀' },
-  { categoryId: 'resource', levelId: 5, content: '打造智能化资源调度平台，实现资源最优配置' },
+  { categoryId: 'resource', levelId: 1, content: '制定基础设施升级计划，优化IT资源分配', implementationGuidance: '评估现有IT基础设施的性能和容量，制定升级计划，并根据业务需求合理分配IT资源。' },
+  { categoryId: 'resource', levelId: 2, content: '建立云资源管理体系，实施资源使用监控', implementationGuidance: '采用云平台管理工具，对云资源的使用情况进行监控和分析，优化资源配置，降低成本。' },
+  { categoryId: 'resource', levelId: 3, content: '构建资源共享平台，提高资源利用效率', implementationGuidance: '建立内部资源共享平台，例如知识库、代码库、工具库等，促进知识和经验的共享，提高资源利用效率。' },
+  { categoryId: 'resource', levelId: 4, content: '建立知识管理系统，实现知识资产沉淀', implementationGuidance: '构建知识管理系统，对企业内部的知识进行收集、整理、存储和共享，实现知识资产的沉淀和传承。' },
+  { categoryId: 'resource', levelId: 5, content: '打造智能化资源调度平台，实现资源最优配置', implementationGuidance: '利用AI技术，对企业内部的各种资源进行智能调度和优化配置，例如生产设备、人力资源、物流资源等，提高资源利用率和效率。' },
 
   // 数字化运营建议
-  { categoryId: 'digital_operation', levelId: 1, content: '在核心业务环节试点数字化工具应用' },
-  { categoryId: 'digital_operation', levelId: 2, content: '建立运营数据分析看板，优化关键业务流程' },
-  { categoryId: 'digital_operation', levelId: 3, content: '实现跨部门数据共享，构建数字化运营中台' },
-  { categoryId: 'digital_operation', levelId: 4, content: '应用AI技术实现运营智能预测与预警' },
-  { categoryId: 'digital_operation', levelId: 5, content: '建立智慧运营体系，实现业务全链路自动化' },
+  { categoryId: 'digital_operation', levelId: 1, content: '在核心业务环节试点数字化工具应用', implementationGuidance: '选择企业核心业务环节，例如销售、采购、生产等，试点应用数字化工具，例如CRM、ERP、MES等。' },
+  { categoryId: 'digital_operation', levelId: 2, content: '建立运营数据分析看板，优化关键业务流程', implementationGuidance: '建立运营数据分析看板，对关键业务流程的各项指标进行监控和分析，找出瓶颈和问题，并进行优化。' },
+  { categoryId: 'digital_operation', levelId: 3, content: '实现跨部门数据共享，构建数字化运营中台', implementationGuidance: '打破部门间的数据壁垒，实现跨部门数据共享，构建数字化运营中台，支持各部门的业务创新和应用。' },
+  { categoryId: 'digital_operation', levelId: 4, content: '应用AI技术实现运营智能预测与预警', implementationGuidance: '利用AI技术，对运营数据进行分析和预测，实现智能预测和预警，例如销售预测、库存预警、设备故障预警等。' },
+  { categoryId: 'digital_operation', levelId: 5, content: '建立智慧运营体系，实现业务全链路自动化', implementationGuidance: '构建智慧运营体系，实现业务全链路的自动化，例如订单自动处理、生产自动排程、物流自动配送等，提高运营效率和降低成本。' },
 
   // 数字化生产建议
-  { categoryId: 'digital_production', levelId: 1, content: '在关键生产环节部署传感器和物联网设备' },
-  { categoryId: 'digital_production', levelId: 2, content: '建立生产数据采集系统，实现生产过程可视化' },
-  { categoryId: 'digital_production', levelId: 3, content: '应用数字孪生技术优化生产工艺流程' },
-  { categoryId: 'digital_production', levelId: 4, content: '构建智能排产系统，实现柔性化生产' },
-  { categoryId: 'digital_production', levelId: 5, content: '打造智能制造体系，实现个性化定制生产' },
+  { categoryId: 'digital_production', levelId: 1, content: '在关键生产环节部署传感器和物联网设备', implementationGuidance: '在关键生产环节部署传感器和物联网设备，例如温度传感器、压力传感器、流量计等，实现生产数据的自动采集。' },
+  { categoryId: 'digital_production', levelId: 2, content: '建立生产数据采集系统，实现生产过程可视化', implementationGuidance: '建立生产数据采集系统，将采集到的生产数据进行集中存储和管理，并以可视化方式呈现，方便管理层进行监控和分析。' },
+  { categoryId: 'digital_production', levelId: 3, content: '应用数字孪生技术优化生产工艺流程', implementationGuidance: '利用数字孪生技术，对生产工艺流程进行仿真和优化，找出瓶颈和问题，并进行改进，提高生产效率和质量。' },
+  { categoryId: 'digital_production', levelId: 4, content: '构建智能排产系统，实现柔性化生产', implementationGuidance: '构建智能排产系统，根据订单需求和生产资源情况，自动进行生产排程，实现柔性化生产，满足客户的个性化需求。' },
+  { categoryId: 'digital_production', levelId: 5, content: '打造智能制造体系，实现个性化定制生产', implementationGuidance: '构建智能制造体系，实现生产过程的智能化和自动化，支持个性化定制生产，满足客户的差异化需求。' },
 
   // 数字化服务建议
-  { categoryId: 'digital_service', levelId: 1, content: '建立线上客户服务渠道，完善基础服务功能' },
-  { categoryId: 'digital_service', levelId: 2, content: '构建客户画像系统，实现精准服务推送' },
-  { categoryId: 'digital_service', levelId: 3, content: '部署智能客服系统，提升服务响应效率' },
-  { categoryId: 'digital_service', levelId: 4, content: '建立服务知识图谱，实现问题自动诊断' },
-  { categoryId: 'digital_service', levelId: 5, content: '打造智慧服务体系，提供预测性维护服务' }
+  { categoryId: 'digital_service', levelId: 1, content: '建立线上客户服务渠道，完善基础服务功能', implementationGuidance: '建立线上客户服务渠道，例如网站、APP、微信公众号等，提供在线咨询、在线报修、在线投诉等基础服务功能。' },
+  { categoryId: 'digital_service', levelId: 2, content: '构建客户画像系统，实现精准服务推送', implementationGuidance: '构建客户画像系统，对客户的基本信息、购买行为、服务记录等进行分析，了解客户的需求和偏好，实现精准服务推送。' },
+  { categoryId: 'digital_service', levelId: 3, content: '部署智能客服系统，提升服务响应效率', implementationGuidance: '部署智能客服系统，利用AI技术，自动回答客户的常见问题，提高服务响应效率，降低人工客服成本。' },
+  { categoryId: 'digital_service', levelId: 4, content: '建立服务知识图谱，实现问题自动诊断', implementationGuidance: '建立服务知识图谱，将服务相关的知识进行结构化存储和管理，实现问题自动诊断，提高服务效率和质量。' },
+  { categoryId: 'digital_service', levelId: 5, content: '打造智慧服务体系，提供预测性维护服务', implementationGuidance: '构建智慧服务体系，利用物联网、大数据、AI等技术，对设备运行状态进行实时监控和分析，预测设备故障，提供预测性维护服务，提高设备利用率和可靠性。' }
 ];
 
