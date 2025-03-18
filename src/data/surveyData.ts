@@ -1,8 +1,5 @@
 import { Category, Question } from '../types/survey';
-
 import { MaturityLevel } from '../types/survey';
-
-// 移除本地接口定义
 
 export interface Recommendation {
   categoryId: string;
@@ -132,7 +129,7 @@ export const questions: Question[] = [
     id: 'q7',
     categoryId: 'technology',
     title: '信息安全',
-    description: '贵公司是否建立了完善的数字化安全管理体系？',
+    description: '贵公司是否建立了完善的信息安全管理体系？',
     options: [
       { id: 'q7_a', label: 'A', description: '没有', score: 1 },
       { id: 'q7_b', label: 'B', description: '仅采取了一些简单的安全措施', score: 2 },
@@ -432,39 +429,50 @@ export const questions: Question[] = [
 export const maturityLevels: MaturityLevel[] = [
   {
     level: 1,
-    name: '初始阶段',
-    description: '具备初步数字化意识，但缺乏系统规划和实施能力',
-    scoreRange: { min: 1, max: 10 }
+    name: '初始级',
+    description: '数字化转型处于起步阶段，缺乏明确的战略和规划，数字化应用零散，数据利用率低。',
+    scoreRange: { min: 29, max: 52 } // 1.0 * 29, 1.8 * 29
   },
   {
     level: 2,
-    name: '探索阶段',
-    description: '开始局部数字化尝试，但尚未形成体系化能力',
-    scoreRange: { min: 11, max: 20 }
+    name: '管理级',
+    description: '开始关注数字化转型，制定了初步的战略和规划，数字化应用逐步推广，数据采集和存储初步实现。',
+    scoreRange: { min: 52.19, max: 75.4 } // 1.81 * 29, 2.6 * 29
   },
   {
     level: 3,
-    name: '发展阶段',
-    description: '建立基础数字化能力，正在向业务全流程扩展',
-    scoreRange: { min: 21, max: 30 }
+    name: '规范级',
+    description: '建立了较为完善的数字化管理体系，数字化应用覆盖关键业务领域，数据管理和利用水平有所提升。',
+    scoreRange: { min: 75.69, max: 98.6 } // 2.61 * 29, 3.4 * 29
   },
   {
     level: 4,
-    name: '成熟阶段',
-    description: '实现业务全流程数字化，具备数据驱动决策能力',
-    scoreRange: { min: 31, max: 40 }
+    name: '优化级',
+    description: '数字化转型成为企业发展的重要驱动力，数字化应用深入业务流程，数据驱动业务创新和增长。',
+    scoreRange: { min: 98.89, max: 121.8 } // 3.41 * 29, 4.2 * 29
   },
   {
     level: 5,
-    name: '优化阶段',
-    description: '完成全面数字化转型，持续优化创新业务模式',
-    scoreRange: { min: 41, max: 50 }
+    name: '引领级',
+    description: '数字化转型成为企业的核心竞争力，数字化应用全面覆盖，数据价值得到充分挖掘和利用，引领行业数字化转型发展。',
+    scoreRange: { min: 122.09, max: 145 } // 4.21 * 29, 5.0 * 29
   }
 ];
 
 export const recommendations: Recommendation[] = [
-  // 组织能力域建议（已存在）
-  // 技术能力域建议（已存在）
+  // 组织能力域建议
+  { categoryId: 'organization', levelId: 1, content: '建立数字化转型领导小组，明确转型目标和范围' },
+  { categoryId: 'organization', levelId: 2, content: '制定数字化转型战略规划，明确实施路径和时间表' },
+  { categoryId: 'organization', levelId: 3, content: '优化业务流程，实现关键环节的数字化' },
+  { categoryId: 'organization', levelId: 4, content: '建立数字化转型文化，鼓励创新和协作' },
+  { categoryId: 'organization', levelId: 5, content: '构建数字化转型生态系统，与合作伙伴共同创新' },
+
+  // 技术能力域建议
+  { categoryId: 'technology', levelId: 1, content: '评估现有IT基础设施，制定升级改造计划' },
+  { categoryId: 'technology', levelId: 2, content: '引入云计算、大数据等新兴技术' },
+  { categoryId: 'technology', levelId: 3, content: '构建数字化研发平台，提升研发效率' },
+  { categoryId: 'technology', levelId: 4, content: '加强信息安全管理，保障数据安全' },
+  { categoryId: 'technology', levelId: 5, content: '探索人工智能、物联网等前沿技术应用' },
   
   // 数据能力域建议
   { categoryId: 'data', levelId: 1, content: '建立基础数据采集规范，制定数据治理路线图' },
@@ -501,3 +509,4 @@ export const recommendations: Recommendation[] = [
   { categoryId: 'digital_service', levelId: 4, content: '建立服务知识图谱，实现问题自动诊断' },
   { categoryId: 'digital_service', levelId: 5, content: '打造智慧服务体系，提供预测性维护服务' }
 ];
+

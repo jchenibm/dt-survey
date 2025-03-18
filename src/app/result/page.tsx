@@ -71,18 +71,82 @@ export default function Result() {
   };
 
   const getChartData = () => {
-    if (!result) return null;
+    if (!result || !result.categoryScores) return null; // 确保 result 和 categoryScores 不为空
 
-    return {
+    const chartData = {
       labels: categories.map(c => c.name),
       datasets: [{
         label: '能力域得分',
         data: result.categoryScores.map(cs => cs.score),
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
+        backgroundColor: (context: any) => {
+          const index = context.dataIndex;
+          if (index < 0 || index >= result.categoryScores.length || !result.categoryScores[index]) {
+            return 'rgba(0, 0, 0, 0.1)'; // 默认颜色，防止出错
+          }
+          const score = result.categoryScores[index].score;
+          return score >= result.averageScore ? 'rgba(75, 192, 192, 0.4)' : 'rgba(255, 99, 132, 0.4)'; // 优势/劣势颜色
+        },
+        borderColor: (context: any) => {
+          const index = context.dataIndex;
+          if (index < 0 || index >= result.categoryScores.length || !result.categoryScores[index]) {
+            return 'rgba(0, 0, 0, 0.1)'; // 默认颜色，防止出错
+          }
+          const score = result.categoryScores[index].score;
+          return score >= result.averageScore ? 'rgba(75, 192, 192, 1)' : 'rgba(255, 99, 132, 1)';
+        },
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(255,255,255,1)',
+        pointBorderColor: (context: any) => {
+          const index = context.dataIndex;
+          if (index < 0 || index >= result.categoryScores.length || !result.categoryScores[index]) {
+            return 'rgba(0, 0, 0, 0.1)'; // 默认颜色，防止出错
+          }
+          const score = result.categoryScores[index].score;
+          return score >= result.averageScore ? 'rgba(75, 192, 192, 1)' : 'rgba(255, 99, 132, 1)';
+        },
+        pointBorderWidth: 2,
+        pointHoverBackgroundColor: 'rgba(75, 192, 192, 1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
       }]
     };
+
+    return chartData;
+  };
+
+  const chartOptions = {
+    scales: {
+      r: {
+        angleLines: {
+          display: true
+        },
+        suggestedMin: 0,
+        suggestedMax: 5,
+        ticks: {
+          stepSize: 1, // 简化刻度
+          showLabelBackdrop: false,
+          backdropColor: 'rgba(255, 255, 255, 0.75)',
+          color: '#777',
+        },
+        pointLabels: {
+          fontSize: 14,
+          fontColor: '#333'
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false // 隐藏图例
+      },
+      tooltip: {
+        callbacks: {
+          label: (context: any) => {
+            const label = context.label || '';
+            const value = context.parsed?.r || 0;
+            return `${label}: ${value.toFixed(1)}`;
+          }
+        }
+      }
+    }
   };
 
   const generatePDF = async () => {
@@ -98,7 +162,19 @@ export default function Result() {
     pdf.save('数字化转型成熟度评估报告.pdf');
   };
 
+  const getStrengthsAndWeaknesses = () => {
+    if (!result) return { strengths: [], weaknesses: [] };
+
+    const sortedScores = [...result.categoryScores].sort((a, b) => b.score - a.score);
+    const strengths = sortedScores.slice(0, 2).map(cs => categories.find(c => c.id === cs.categoryId)?.name || '');
+    const weaknesses = sortedScores.slice(-2).map(cs => categories.find(c => c.id === cs.categoryId)?.name || '');
+
+    return { strengths, weaknesses };
+  };
+
   if (!result) return null;
+
+  const { strengths, weaknesses } = getStrengthsAndWeaknesses();
 
   return (
     <Box minH="100vh" py={8} bg="gray.50">
@@ -129,8 +205,14 @@ export default function Result() {
                   能力域得分分布
                 </Heading>
                 <Box h="300px">
-                  {getChartData() && <Radar data={getChartData()!} />}
+                  {getChartData() && <Radar data={getChartData()!} options={chartOptions as any} />}
                 </Box>
+                <Text mt={2} fontSize="sm" color="green.600">
+                  优势领域：{strengths.join('、')}
+                </Text>
+                <Text mt={2} fontSize="sm" color="red.600">
+                  待改进领域：{weaknesses.join('、')}
+                </Text>
               </Box>
             </GridItem>
 
