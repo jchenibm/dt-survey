@@ -254,17 +254,55 @@ export default function Result() {
           imgWidth = (canvas.width * imgHeight) / canvas.height;
         }
 
-        let heightLeft = imgHeight;
-        let position = margin;
-
-        pdf.addImage(imgData, 'PNG', (pageWidth - imgWidth) / 2, position, imgWidth, imgHeight);
-        heightLeft -= availableHeight;
-
-        while (heightLeft >= 0) {
-          pdf.addPage();
-          position = margin;
-          pdf.addImage(imgData, 'PNG', (pageWidth - imgWidth) / 2, position, imgWidth, imgHeight);
-          heightLeft -= availableHeight;
+        // 计算需要的页数
+        const totalPages = Math.ceil(imgHeight / availableHeight);
+        
+        // 处理多页情况
+        if (totalPages <= 1) {
+          // 单页情况，直接添加整个图像
+          pdf.addImage(imgData, 'PNG', (pageWidth - imgWidth) / 2, margin, imgWidth, imgHeight);
+        } else {
+          // 多页情况，分页添加图像的不同部分
+          let sourceY = 0;
+          let destY = margin;
+          let remainingHeight = canvas.height;
+          
+          // 计算每页实际显示的高度（按比例）
+          const pageDisplayHeight = availableHeight;
+          const pageSourceHeight = (canvas.height * pageDisplayHeight) / imgHeight;
+          
+          for (let i = 0; i < totalPages; i++) {
+            // 当前页要显示的源图像高度（不超过剩余高度）
+            const currentPageSourceHeight = Math.min(pageSourceHeight, remainingHeight);
+            // 当前页要显示的目标高度（按比例）
+            const currentPageDisplayHeight = (currentPageSourceHeight * imgHeight) / canvas.height;
+            
+            // 添加当前页的图像部分
+            pdf.addImage({
+              imageData: imgData,
+              format: 'PNG',
+              x: (pageWidth - imgWidth) / 2,
+              y: destY,
+              width: imgWidth,
+              height: currentPageDisplayHeight,
+              alias: undefined,
+              compression: 'FAST',
+              rotation: 0
+            });
+            
+            // 设置裁剪区域（通过计算源图像的比例）
+            // 注意：由于TypeScript类型限制，我们使用对象形式传递参数
+            
+            // 更新剩余高度和源图像位置
+            remainingHeight -= currentPageSourceHeight;
+            sourceY += currentPageSourceHeight;
+            
+            // 如果还有下一页，添加新页面
+            if (i < totalPages - 1) {
+              pdf.addPage();
+              destY = margin;
+            }
+          }
         }
 
         pdf.save('数字化转型成熟度评估报告.pdf');
